@@ -46,12 +46,28 @@ namespace DAL
 
         public List<TEntity> Filter<TEntity>(Expression<Func<TEntity, bool>> criteria) where TEntity : class
         {
-            throw new NotImplementedException();
+            List<TEntity> Result = null;
+            try
+            {
+                Result = Context.Set<TEntity>().Where(criteria).ToList();
+            }
+            catch 
+            { }
+            return Result;
         }
 
         public TEntity Retrieve<TEntity>(Expression<Func<TEntity, bool>> criteria) where TEntity : class
         {
-            throw new NotImplementedException();
+            TEntity Result = null;
+            try
+            {
+                Result = Context.Set<TEntity>().FirstOrDefault(criteria);
+            }
+            catch
+            {
+
+            }
+            return Result;
         }
 
         public bool Update<TEntity>(TEntity toUpdate) where TEntity : class
@@ -67,6 +83,14 @@ namespace DAL
             catch { }
             return Result;
 
+        }
+
+        public void Dispose()
+        {
+            if (Context!=null)
+            {
+                Context.Dispose();
+            }
         }
     }
 }

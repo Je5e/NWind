@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace DAL
 {
-   public interface IRepository
+   public interface IRepository:IDisposable
     {
         // Para agregar una nueva entidad a la BD
         TEntity Create<TEntity>(TEntity toCreate) where TEntity : class;
