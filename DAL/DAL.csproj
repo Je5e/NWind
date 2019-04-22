@@ -50,6 +50,18 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <None Include="..\Entities\Category.cs">
+      <DependentUpon>NWindDBModel.tt</DependentUpon>
+    </None>
+    <None Include="..\Entities\Product.cs">
+      <DependentUpon>NWindDBModel.tt</DependentUpon>
+    </None>
+    <None Include="..\Entities\Category.cs">
+      <DependentUpon>NWindDBModel.tt</DependentUpon>
+    </None>
+    <None Include="..\Entities\Product.cs">
+      <DependentUpon>NWindDBModel.tt</DependentUpon>
+    </None>
     <Compile Include="RepositoryFactory.cs" />
     <None Include="..\Entities\Category.cs">
       <DependentUpon>NWindDBModel.tt</DependentUpon>
@@ -111,6 +123,9 @@
       <Project>{7348c5ff-a2ad-41d7-8d0e-a811cc9862e2}</Project>
       <Name>Entities</Name>
     </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="..\Entities\" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
