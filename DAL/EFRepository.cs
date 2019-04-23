@@ -87,9 +87,9 @@ namespace DAL
 
         public void Dispose()
         {
-            if (Context!=null)
+            if (Context != null)
             {
-                Context.Dispose();
+                Context.Dispose(); // libera los recursos utilizados.
             }
         }
     }

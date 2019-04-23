@@ -1,6 +1,7 @@
 ﻿using DAL;
 using Entities;
 using System;
+using System.Linq;
 
 namespace Test
 {
@@ -9,7 +10,9 @@ namespace Test
         static void Main(string[] args)
         {
             //  AddProduct();
-            RetrieveAndUpdate();
+            //RetrieveAndUpdate();
+            //List();
+            SearchAndDelete();
             Console.Write("Presione <enter> para finalizar");
             Console.ReadLine();
         }
@@ -68,8 +71,78 @@ namespace Test
                     P.ProductName = P.ProductName + "#######";
                     r.Update(P);
                     Console.WriteLine("Nombre modificado");
-                    
+
                 }
+            }
+        }
+
+
+        static void List()
+        {
+            using (var r = RepositoryFactory.CreateRepository())
+            {
+                // Buscar una category agregada previamente
+                var Categories = r.Filter<Category>(c => true);
+
+                //var Products = r.Filter<Product>
+                //    (p => p.ProductName.Contains("ae"))
+                //    .OrderByDescending(p=> p.ProductName);
+                var Products = r.Filter<Product>(p => true);
+
+                // Inne Join con Linq
+                // T-SQL: DML(SELECT, INSERT, DELETE, UPDATE) ADO.NET
+                //SqlConnection Cnn;
+                //SqlCommand cmd;
+                //SqlDataReader R;
+                //string ConnectionString = "Data Source=.;Initial Catalog=NWind;Integrate Security=True";
+                //Cnn = new SqlConnection(ConnectionString);
+
+                //cmd = new SqlCommand("SELECT * FROM Categories");
+                //cmd.Connection = Cnn;
+                //Cnn.Open();
+                //R = cmd.ExecuteReader();
+                //while (R.Read())
+                //{
+                //    Category c = new Category();
+                //    c.CategoryID = R.GetInt32(0);
+                //    c.CategoryName = R.GetName(1);
+
+                //    Categories.Add(c);
+                //}
+                //Cnn.Close();
+
+                var ListProduct =
+                    from prod in Products
+                    join cate in Categories on prod.CategoryID
+                    equals cate.CategoryID
+                    select new
+                    {
+                        CategoryName = cate.CategoryName,
+                        ProducName = prod.ProductName
+                    };
+                foreach (var P in ListProduct)
+                {
+                    Console.WriteLine($"{P.CategoryName}, {P.ProducName}");
+                }
+            }
+        }
+
+        static void SearchAndDelete() // Eliminarlo
+        {
+            using (var R = RepositoryFactory.CreateRepository())
+            {
+                var P = R.Retrieve<Product>(p => p.ProductID == 1);
+                if (P != null)
+                {
+                    Console.WriteLine(P.ProductName);
+                    R.Delete(P);
+                    Console.WriteLine("Producto Eliminado!");
+                }
+                else
+                {
+                    Console.WriteLine("Producto no encontrado!");
+                }
+               
             }
         }
     }
