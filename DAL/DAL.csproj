@@ -62,6 +62,12 @@
     <None Include="..\Entities\Product.cs">
       <DependentUpon>NWindDBModel.tt</DependentUpon>
     </None>
+    <None Include="..\Entities\Category.cs">
+      <DependentUpon>NWindDBModel.tt</DependentUpon>
+    </None>
+    <None Include="..\Entities\Product.cs">
+      <DependentUpon>NWindDBModel.tt</DependentUpon>
+    </None>
     <Compile Include="RepositoryFactory.cs" />
     <None Include="..\Entities\Category.cs">
       <DependentUpon>NWindDBModel.tt</DependentUpon>
