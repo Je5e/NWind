@@ -12,7 +12,8 @@ namespace Test
             //  AddProduct();
             //RetrieveAndUpdate();
             //List();
-            SearchAndDelete();
+            AddCategoryAndProduct();
+            //SearchAndDelete();
             Console.Write("Presione <enter> para finalizar");
             Console.ReadLine();
         }
@@ -21,13 +22,13 @@ namespace Test
         {
             Category c = new Category()
             {
-                CategoryName = "Cereales",
-                Description = "Productos de maíz"
+                CategoryName = "Mariscos",
+                Description = "Productos del mar"
             };
 
             Product Cereal = new Product
             {
-                ProductName = "Cereal",
+                ProductName = "Camaron",
                 UnitsInStock = 0,
                 UnitPrice = 15
             };
