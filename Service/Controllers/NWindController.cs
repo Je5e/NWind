@@ -42,14 +42,15 @@ namespace Service.Controllers
             var Result = BLL.Delete(ID);
             return Result;
         }
-        [HttpGet]
+      
+       [HttpGet]
         public List<Product> FilterProductsByCategoryID(int categoryID)
         {
             var BLL = new Products();
             var Result = BLL.FilterByCategoryID(categoryID);
             return Result;
         }
-        [HttpGet]
+        [HttpGet]//DTO
         public List<Category> GetCategories()
         {
             var BLL = new Categories();
@@ -84,5 +85,20 @@ namespace Service.Controllers
             var Result = BLL.Update(productToUpdate);
             return Result;
         }
+        [HttpGet]
+        public List<ProductCatDTO> GetList()
+        {
+            var BLL = new Categories();
+            var BLLc = new Products();
+            return BLL.GetCategories().
+                Join(BLLc.Filter(), c => c.CategoryID, p => p.CategoryID, (c, p) => new ProductCatDTO { ProductID = p.ProductID, ProductName = p.ProductName, CategoryName = c.CategoryName }).ToList();
+        }
+    }
+
+    public class ProductCatDTO
+    {
+        public int ProductID { get; set; }
+        public string ProductName { get; set; }
+        public string CategoryName { get; set; }
     }
 }

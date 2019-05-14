@@ -113,5 +113,15 @@ namespace BLL
             }
             return Result;
         }
+
+        public List<Product> Filter()
+        {
+            List<Product> Result = null;
+            using (var repository = RepositoryFactory.CreateRepository())
+            {
+                Result = repository.Filter<Product>(c => true);
+            }
+            return Result;
+        }
     }
 }

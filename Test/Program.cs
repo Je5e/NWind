@@ -27,14 +27,16 @@ namespace Test
             };
 
             Product Cereal = new Product
-            {
+            { 
                 ProductName = "Camaron",
                 UnitsInStock = 0,
                 UnitPrice = 15
             };
             c.Products.Add(Cereal);
 
-
+            var p = new Product();
+            
+            
             using (var r = RepositoryFactory.CreateRepository())
             {
                 r.Create(c);
